@@ -58,6 +58,9 @@
             background-color: var(--temple-cream);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Loading Screen */
@@ -96,6 +99,20 @@
         .logo-wrapper {
             opacity: 0;
             animation: fadeIn 1.5s ease-out forwards;
+            position: relative;
+            padding: 30px;
+        }
+
+        .logo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0) 70%);
+            z-index: -1;
         }
 
         .temple-logo {
@@ -103,6 +120,8 @@
             height: 180px;
             object-fit: contain;
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes fadeIn {
@@ -120,6 +139,8 @@
             text-align: center;
             opacity: 0;
             animation: brushStroke 2s ease-out 0.8s forwards;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
         }
 
         @keyframes brushStroke {
@@ -344,14 +365,14 @@
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--space-lg);
             margin-top: var(--space-xl);
         }
 
         .service-card {
             background: var(--white);
-            padding: var(--space-lg);
+            padding: var(--space-md) var(--space-sm);
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
@@ -365,15 +386,15 @@
         }
 
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: var(--space-md);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-sm);
         }
 
         .service-title {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--temple-burgundy);
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-xs);
         }
 
         /* Events Section */
@@ -518,6 +539,29 @@
             transform: translateY(0);
         }
 
+        /* Mobile specific font improvements */
+        @media screen and (-webkit-min-device-pixel-ratio: 2) {
+            .temple-name {
+                -webkit-text-stroke: 0.5px transparent;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .service-card {
+                padding: var(--space-sm) var(--space-xs);
+            }
+            
+            .service-icon {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .service-title {
+                font-size: 1.1rem;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
@@ -554,6 +598,44 @@
 
             .section {
                 padding: var(--space-lg) var(--space-sm);
+            }
+
+            .services-grid {
+                gap: var(--space-md);
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: var(--space-sm);
+            }
+
+            .contact-info {
+                padding: var(--space-md);
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .contact-item {
+                gap: var(--space-sm);
+                flex-wrap: wrap;
+            }
+
+            .contact-item h4 {
+                font-size: 1rem;
+            }
+
+            .contact-item p {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Fix Safari font rendering */
+        @supports (-webkit-appearance: none) {
+            .temple-name,
+            .section-title,
+            .service-title {
+                font-kerning: normal;
+                font-variant-ligatures: common-ligatures;
             }
         }
 
@@ -645,26 +727,26 @@
             <div class="service-card">
                 <div class="service-icon">🙏</div>
                 <h3 class="service-title">日常参拜</h3>
-                <p>每日开放供信众参拜祈福</p>
-                <p class="english-text">Daily prayers and blessings</p>
+                <p style="margin-bottom: 0.5rem;">每日开放供信众参拜祈福</p>
+                <p class="english-text" style="margin: 0;">Daily prayers and blessings</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">📿</div>
                 <h3 class="service-title">法会活动</h3>
-                <p>定期举办各类佛教法会</p>
-                <p class="english-text">Regular Buddhist ceremonies</p>
+                <p style="margin-bottom: 0.5rem;">定期举办各类佛教法会</p>
+                <p class="english-text" style="margin: 0;">Regular Buddhist ceremonies</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🕉️</div>
                 <h3 class="service-title">祈福点灯</h3>
-                <p>为信众提供祈福点灯服务</p>
-                <p class="english-text">Prayer and lighting services</p>
+                <p style="margin-bottom: 0.5rem;">为信众提供祈福点灯服务</p>
+                <p class="english-text" style="margin: 0;">Prayer and lighting services</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">📅</div>
                 <h3 class="service-title">节日庆典</h3>
-                <p>观音诞等重要佛教节日庆祝</p>
-                <p class="english-text">Buddhist festival celebrations</p>
+                <p style="margin-bottom: 0.5rem;">观音诞等重要佛教节日庆祝</p>
+                <p class="english-text" style="margin: 0;">Buddhist festival celebrations</p>
             </div>
         </div>
     </section>
