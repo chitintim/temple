@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "2025-01-guanyin-teaching",
+      "title": "观音菩萨慈悲开示",
+      "date": "2025-01-15",
+      "author": "释明慧法师",
+      "category": "法会开示",
+      "preview": "在新年伊始，观音菩萨教导我们要以慈悲心对待一切众生...",
+      "filename": "2025-01-guanyin-teaching.html"
+    },
+    {
+      "id": "2025-01-temple-update",
+      "title": "新庙建设进展更新",
+      "date": "2025-01-10",
+      "author": "寺院管理委员会",
+      "category": "寺院新闻",
+      "preview": "感谢各位善信的支持，新庙建设工程进展顺利...",
+      "filename": "2025-01-temple-update.html"
+    }
+  ]
+}
