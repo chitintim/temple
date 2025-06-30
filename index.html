@@ -102,7 +102,7 @@
         /* Logo Animation */
         .logo-wrapper {
             opacity: 0;
-            animation: fadeIn 1.5s ease-out forwards;
+            animation: logoReveal 2s ease-out forwards;
             position: relative;
             padding: 30px;
         }
@@ -112,11 +112,12 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(0.8);
             width: 220px;
             height: 220px;
             background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0) 70%);
             z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite;
         }
 
         .temple-logo {
@@ -126,11 +127,40 @@
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
             position: relative;
             z-index: 1;
+            animation: logoFloat 4s ease-in-out infinite;
         }
 
-        @keyframes fadeIn {
-            to {
+        @keyframes logoReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            50% {
+                transform: scale(1.05) rotate(2deg);
+            }
+            100% {
                 opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
             }
         }
 
@@ -150,12 +180,17 @@
         @keyframes brushStroke {
             0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(20px) scaleX(0.8);
                 filter: blur(10px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(10px) scaleX(1.05);
+                filter: blur(2px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scaleX(1);
                 filter: blur(0);
             }
         }
@@ -166,7 +201,7 @@
             font-size: 1rem;
             color: var(--temple-cream);
             opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
+            animation: fadeInSlide 1s ease-out 1.5s forwards;
             font-weight: 300;
         }
 
@@ -175,7 +210,7 @@
             position: absolute;
             bottom: var(--space-lg);
             opacity: 0;
-            animation: fadeIn 1s ease-out 2s forwards;
+            animation: fadeInUp 1s ease-out 2s forwards;
         }
 
         .scroll-indicator::after {
@@ -206,6 +241,24 @@
             border-radius: 2px;
             transform: translateX(-50%);
             animation: scrollAnimation 2s infinite;
+        }
+
+        @keyframes fadeInSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes scrollAnimation {
