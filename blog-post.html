@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章 - 打扪白衣观音庙</title>
+    <title>文章加载中... - 打扪白衣观音庙</title>
     <meta name="description" content="打扪白衣观音庙庙务资讯">
     
     <!-- Favicon -->
@@ -134,21 +134,154 @@
             font-weight: 500;
         }
 
-        /* Main Container */
-        .main-container {
-            padding-top: 60px;
-            min-height: calc(100vh - 150px);
+        /* Article Container */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem var(--space-md) var(--space-lg);
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Article Header */
+        .article-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid rgba(139, 58, 58, 0.1);
+        }
+
+        .article-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--temple-burgundy);
+            margin-bottom: var(--space-md);
+            line-height: 1.3;
+        }
+
+        .article-meta {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: var(--space-lg);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Article Content - Preserve Blogger formatting */
+        .article-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        /* Preserve all text formatting from Blogger */
+        .article-content b,
+        .article-content strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .article-content i,
+        .article-content em {
+            font-style: italic;
+        }
+
+        .article-content u {
+            text-decoration: underline;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            font-family: var(--font-heading);
+            color: var(--temple-burgundy);
+            margin: var(--space-lg) 0 var(--space-md) 0;
+            line-height: 1.3;
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: var(--space-md);
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            margin: var(--space-md) auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .article-content blockquote {
+            margin: var(--space-md) 0;
+            padding: var(--space-md);
+            background: var(--soft-gray);
+            border-left: 4px solid var(--temple-gold);
+            font-style: italic;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: var(--space-md);
+            margin-left: var(--space-lg);
+        }
+
+        .article-content li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .article-content a {
+            color: var(--temple-burgundy);
+            text-decoration: underline;
+        }
+
+        .article-content a:hover {
+            color: var(--deep-burgundy);
+        }
+
+        /* Blogger specific styles */
+        .article-content .separator {
+            display: block;
+            text-align: center;
+            margin: var(--space-md) 0;
+        }
+
+        .article-content div[style*="text-align: center"] {
+            text-align: center;
+        }
+
+        .article-content div[style*="text-align: right"] {
+            text-align: right;
+        }
+
+        .article-content div[style*="text-align: left"] {
+            text-align: left;
         }
 
         /* Navigation Buttons */
         .post-navigation {
-            background: var(--white);
-            padding: var(--space-md);
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(139, 58, 58, 0.1);
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             gap: var(--space-md);
             flex-wrap: wrap;
         }
@@ -168,20 +301,6 @@
             transform: translateY(-2px);
         }
 
-        /* Post Container */
-        .post-container {
-            flex: 1;
-            width: 100%;
-            background: var(--white);
-        }
-
-        .post-iframe {
-            width: 100%;
-            height: calc(100vh - 180px);
-            border: none;
-            background: white;
-        }
-
         /* Loading State */
         .loading {
             text-align: center;
@@ -195,10 +314,9 @@
             background: #fee;
             color: #c33;
             padding: var(--space-lg);
-            text-align: center;
-            margin: var(--space-md) auto;
-            max-width: 600px;
             border-radius: 12px;
+            text-align: center;
+            margin: var(--space-md) 0;
         }
 
         /* Footer */
@@ -207,6 +325,7 @@
             color: var(--temple-cream);
             padding: var(--space-lg) var(--space-md);
             text-align: center;
+            margin-top: var(--space-xl);
         }
 
         /* Mobile Menu Toggle */
@@ -249,17 +368,22 @@
                 display: block;
             }
 
+            .article-container {
+                padding-top: 5rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+
             .post-navigation {
-                padding: var(--space-sm);
+                flex-direction: column;
             }
 
             .nav-btn {
-                font-size: 0.875rem;
-                padding: var(--space-xs) var(--space-sm);
-            }
-
-            .post-iframe {
-                height: calc(100vh - 160px);
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -291,16 +415,9 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Navigation Buttons -->
-        <nav class="post-navigation">
-            <a href="blog-external.html" class="nav-btn">← 返回文章列表</a>
-            <a href="#" id="viewInBlogger" class="nav-btn" target="_blank">在 Blogger 查看 →</a>
-        </nav>
-
-        <!-- Post Container -->
-        <div class="post-container" id="postContainer">
+    <!-- Article Container -->
+    <div class="article-container">
+        <div id="articleContent">
             <div class="loading">正在加载文章...</div>
         </div>
     </div>
@@ -312,6 +429,9 @@
     </footer>
 
     <script>
+        // Your Blogger subdomain
+        const BLOGGER_SUBDOMAIN = 'tbky';
+        
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
@@ -324,54 +444,131 @@
             return url ? decodeURIComponent(url) : null;
         }
 
-        // Load post in iframe
-        function loadPost() {
+        // Extract post ID from URL
+        function getPostIdFromUrl(url) {
+            // Extract post ID from blogger URL
+            // Example: https://tbky.blogspot.com/2008/10/blog-post_6564.html
+            const match = url.match(/\/(\d{4})\/(\d{2})\/([^\/]+)\.html/);
+            if (match) {
+                return { year: match[1], month: match[2], name: match[3] };
+            }
+            return null;
+        }
+
+        // Load post using CORS proxy
+        async function loadPost() {
             const postUrl = getPostUrlFromParams();
-            const container = document.getElementById('postContainer');
-            const bloggerLink = document.getElementById('viewInBlogger');
+            const container = document.getElementById('articleContent');
             
             if (!postUrl) {
-                container.innerHTML = `
-                    <div class="error-message">
-                        <h3>错误</h3>
-                        <p>未指定文章</p>
-                        <p style="margin-top: 1rem;">
-                            <a href="blog-external.html" class="nav-btn">返回文章列表</a>
-                        </p>
-                    </div>
-                `;
+                showError('未指定文章');
                 return;
             }
 
-            // Update the "View in Blogger" link
-            bloggerLink.href = postUrl;
+            try {
+                // Use a CORS proxy to fetch the actual post page
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(postUrl)}`;
+                const response = await fetch(proxyUrl);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load post');
+                }
+                
+                const data = await response.json();
+                const html = data.contents;
+                
+                // Parse the HTML to extract post content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Try to find the post title
+                let title = doc.querySelector('.post-title')?.textContent || 
+                           doc.querySelector('h3.post-title')?.textContent ||
+                           doc.querySelector('h2.post-title')?.textContent ||
+                           doc.querySelector('h1.entry-title')?.textContent ||
+                           doc.querySelector('title')?.textContent.split('-')[0].trim() ||
+                           '无标题';
+                
+                // Try to find the post date
+                const dateElement = doc.querySelector('.date-header') || 
+                                  doc.querySelector('.published') ||
+                                  doc.querySelector('time');
+                let date = '未知日期';
+                if (dateElement) {
+                    date = dateElement.textContent.trim();
+                }
+                
+                // Try to find the post content
+                const contentElement = doc.querySelector('.post-body') || 
+                                     doc.querySelector('.entry-content') ||
+                                     doc.querySelector('.post-content') ||
+                                     doc.querySelector('div[id^="post-body-"]');
+                
+                if (!contentElement) {
+                    throw new Error('Cannot find post content');
+                }
+                
+                // Update page title
+                document.title = `${title} - 打扪白衣观音庙`;
+                
+                // Clean up the content (remove scripts, style tags, etc)
+                const content = contentElement.innerHTML
+                    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+                
+                // Create article HTML
+                container.innerHTML = `
+                    <article>
+                        <header class="article-header">
+                            <h1 class="article-title">${title}</h1>
+                            <div class="article-meta">
+                                <div class="meta-item">
+                                    <span>📅</span>
+                                    <span>${date}</span>
+                                </div>
+                            </div>
+                        </header>
+                        
+                        <div class="article-content">
+                            ${content}
+                        </div>
+                        
+                        <nav class="post-navigation">
+                            <a href="blog-external.html" class="nav-btn">← 返回文章列表</a>
+                            <a href="${postUrl}" target="_blank" class="nav-btn">在 Blogger 查看 →</a>
+                        </nav>
+                    </article>
+                `;
 
-            // Create iframe with mobile view URL for better formatting
-            // Adding ?m=1 forces mobile view which is cleaner
-            const mobileUrl = postUrl.includes('?') ? postUrl + '&m=1' : postUrl + '?m=1';
-            
-            container.innerHTML = `
-                <iframe 
-                    src="${mobileUrl}" 
-                    class="post-iframe"
-                    id="postFrame"
-                    onload="adjustIframe()"
-                    title="Blog Post">
-                </iframe>
-            `;
+                // Process images to ensure they're responsive
+                const images = container.querySelectorAll('img');
+                images.forEach(img => {
+                    // Remove any width/height attributes
+                    img.removeAttribute('width');
+                    img.removeAttribute('height');
+                    // Ensure images are responsive
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                });
+
+            } catch (error) {
+                console.error('Error loading post:', error);
+                showError('无法加载文章内容');
+            }
         }
 
-        // Adjust iframe styling after load
-        function adjustIframe() {
-            const iframe = document.getElementById('postFrame');
-            try {
-                // Note: This might not work due to cross-origin restrictions
-                // But we're using mobile view which should look decent by default
-                iframe.style.background = 'white';
-            } catch (e) {
-                // Cross-origin restriction, that's okay
-                console.log('Cross-origin iframe, cannot modify styles');
-            }
+        // Show error message
+        function showError(message) {
+            const container = document.getElementById('articleContent');
+            container.innerHTML = `
+                <div class="error-message">
+                    <h3>错误</h3>
+                    <p>${message}</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="blog-external.html" class="nav-btn">返回文章列表</a>
+                    </p>
+                </div>
+            `;
         }
 
         // Initialize
