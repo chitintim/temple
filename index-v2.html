@@ -709,7 +709,7 @@
         /* Announcement Bar */
         .announcement-bar {
             position: fixed;
-            top: 60px; /* Directly below the nav bar */
+            top: 65px; /* Below the nav bar - desktop height */
             left: 0;
             right: 0;
             background: var(--temple-burgundy);
@@ -798,7 +798,7 @@
         @media (max-width: 768px) {
             .announcement-bar {
                 height: 35px;
-                top: 64px; /* Adjusted to sit right below mobile nav */
+                top: 56px; /* Sits flush below mobile nav without gap */
                 z-index: 997; /* Ensure it's below mobile nav */
             }
             
