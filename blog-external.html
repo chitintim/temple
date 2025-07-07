@@ -467,12 +467,18 @@
                 day: 'numeric'
             });
             
-            // Find the correct link
-            let link = '#';
+            // Extract post ID from entry
+            const postId = entry.id.$t.split('.post-')[1];
+            
+            // Create internal link to our post viewer
+            const link = `blog-post.html?id=${postId}`;
+            
+            // Also keep the original Blogger link as fallback
+            let bloggerLink = '#';
             if (entry.link) {
                 const altLink = entry.link.find(l => l.rel === 'alternate');
                 if (altLink) {
-                    link = altLink.href;
+                    bloggerLink = altLink.href;
                 }
             }
             
@@ -497,7 +503,7 @@
                 </div>
                 <div class="blog-content">
                     <p class="blog-excerpt">${excerpt}</p>
-                    <a href="${link}" target="_blank" class="read-more" onclick="event.stopPropagation();">
+                    <a href="${link}" class="read-more" onclick="event.stopPropagation();">
                         阅读全文 →
                     </a>
                 </div>
@@ -506,7 +512,7 @@
             // Make entire card clickable
             card.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('read-more')) {
-                    window.open(link, '_blank');
+                    window.location.href = link;
                 }
             });
             
