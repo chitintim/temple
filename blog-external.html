@@ -467,12 +467,14 @@
                 day: 'numeric'
             });
             
-            // Get the actual blog post URL
+            // Get the actual blog post URL and create internal link
             let link = '#';
+            let bloggerUrl = '#';
             if (entry.link) {
                 const altLink = entry.link.find(l => l.rel === 'alternate');
                 if (altLink) {
-                    link = `blog-post.html?url=${encodeURIComponent(altLink.href)}`;
+                    bloggerUrl = altLink.href;
+                    link = `blog-post.html?url=${encodeURIComponent(bloggerUrl)}`;
                 }
             }
             
