@@ -124,8 +124,14 @@
             color: var(--temple-burgundy);
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             transform: scaleX(1);
+        }
+        
+        .nav-link.active {
+            color: var(--temple-burgundy);
+            font-weight: 500;
         }
 
         /* Main Content */
@@ -329,8 +335,12 @@
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="blog-external.html" class="nav-link">庙务资讯</a></li>
-                <li><a href="index.html#contact" class="nav-link">联系我们</a></li>
+                <li><a href="index.html#about" class="nav-link">关于我们</a></li>
+                <li><a href="index.html#services" class="nav-link">祈福服务</a></li>
+                <li><a href="index.html#events" class="nav-link">活动日程</a></li>
+                <li><a href="index.html#gallery" class="nav-link">相册</a></li>
+                <li><a href="blog-external.html" class="nav-link active">庙务资讯</a></li>
+                <li><a href="index.html#contact" class="nav-link">联系方式</a></li>
             </ul>
             
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
