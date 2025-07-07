@@ -796,7 +796,8 @@
         @media (max-width: 768px) {
             .announcement-bar {
                 height: 35px;
-                top: 56px; /* Adjust for mobile nav height */
+                top: 80px; /* Further increased for better mobile clearance */
+                z-index: 997; /* Ensure it's below mobile nav */
             }
             
             .announcement-label {
@@ -807,6 +808,12 @@
             .announcement-item {
                 font-size: 0.8rem;
                 padding: 0 var(--space-md);
+            }
+            
+            /* Adjust nav container height on mobile */
+            .nav-container {
+                padding: var(--space-xs) var(--space-sm);
+                min-height: 56px;
             }
         }
 
