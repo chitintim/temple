@@ -3,7 +3,7 @@
 <div align="center">
   <img src="images/temple-logo.png" alt="打扪白衣观音庙标志" width="200">
   
-  **怡保历史悠久的佛教寺庙 | A Historic Buddhist Temple in Ipoh**
+  **怡保历史悠久的神庙 | A Historic Temple in Ipoh**
   
   [![Website](https://img.shields.io/badge/Website-Live-green)](https://[username].github.io/temple)
   [![Established](https://img.shields.io/badge/Established-1975-blue)](https://github.com/[username]/temple)
@@ -18,7 +18,7 @@
 
 **中文**
 
-打扪白衣观音庙始建于1975年，由池佛莲主持创立于怡保打扪七英里热水湖边。本庙供奉白衣观音大士菩萨，四十余年来香火鼎盛，为信众指点迷津、祈福消灾、济世利人。
+打扪白衣观音庙始建于1975年，由池佛莲主持创立于怡保打扪七英里热水湖边。本庙供奉白衣观音大士，四十余年来香火鼎盛，为信众指点迷津、祈福消灾、济世利人。
 
 寺庙于1991年在社团注册法令下成为合法宗教团体。历经多年努力，终于在2007年5月获得霹雳州政府批准永久保留地21,000平方尺，用于建设新庙。
 
@@ -26,7 +26,7 @@
 
 **English**
 
-Tambun Kuan Yin Temple was established in 1975 by Venerable Chi Fo Lian at the hot springs area in Tambun, Ipoh. The temple is dedicated to the White-Robed Guanyin (Avalokitesvara Bodhisattva) and has served the Buddhist community for nearly 50 years.
+Tambun Kuan Yin Temple was established in 1975 by Chi Fo Lian at the hot springs area in Tambun, Ipoh. The temple is dedicated to the White-Robed Guanyin and has served the community for nearly 50 years.
 
 The temple was officially registered under the Societies Act in 1991. After years of applications, the Perak State Government finally approved a permanent religious reserve land of 21,000 square feet in May 2007.
 
@@ -37,14 +37,14 @@ Due to aging infrastructure and development needs, a new temple complex is curre
 ## 🙏 使命与愿景 | Mission & Vision
 
 ### 使命 Mission
-弘扬观音菩萨大慈大悲精神，为信众提供清净庄严的礼佛道场，传承佛教文化，利益众生。
+弘扬观音大士大慈大悲精神，为信众提供清净庄严的祈福道场，传承文化，利益众生。
 
-To promote the compassionate spirit of Guanyin Bodhisattva, provide a sacred space for Buddhist practice, preserve Buddhist culture, and benefit all sentient beings.
+To promote the compassionate spirit of Guanyin, provide a sacred space for prayer and worship, preserve cultural heritage, and benefit all beings.
 
 ### 愿景 Vision
-建设一座融合传统与现代的佛教寺庙，成为怡保地区重要的宗教文化中心，接引更多有缘人学佛修行。
+建设一座融合传统与现代的神庙，成为怡保地区重要的宗教文化中心，接引更多有缘人。
 
-To build a Buddhist temple that harmonizes tradition with modernity, becoming an important religious and cultural center in Ipoh, guiding more people to Buddhist practice.
+To build a temple that harmonizes tradition with modernity, becoming an important religious and cultural center in Ipoh, guiding more people to spiritual practice.
 
 ---
 
@@ -55,7 +55,7 @@ To build a Buddhist temple that harmonizes tradition with modernity, becoming an
 | 二月十九 | 观音诞 | 诵经祈福法会 | 2nd Month, 19th Day | Guanyin's Birthday | Prayer Ceremony |
 | 六月十九 | 观音成道日 | 放生、诵经 | 6th Month, 19th Day | Enlightenment Day | Liberation Ceremony |
 | 九月十九 | 观音出家日 | 供灯祈福 | 9th Month, 19th Day | Renunciation Day | Light Offering |
-| 初一、十五 | 月度法会 | 共修念佛 | 1st & 15th Monthly | Regular Service | Group Practice |
+| 初一、十五 | 月度祈福 | 共同祈福 | 1st & 15th Monthly | Regular Service | Group Prayer |
 
 ---
 
@@ -114,8 +114,8 @@ Your donations for the new temple construction will generate immeasurable merit.
 - 供果 Fruit offerings
 - 斋僧 Sangha dana
 
-### 4. 参加法会 | Join Our Services
-定期参加寺庙法会，共沾法喜。
+### 4. 参加祈福活动 | Join Our Services
+定期参加寺庙祈福活动，共沾喜悦。
 Regular participation in temple services brings spiritual joy.
 
 ---
@@ -133,7 +133,7 @@ This website uses static HTML hosted on GitHub Pages for easy maintenance.
 
 ### 📝 博客系统 | Blog System
 
-网站包含完整的博客功能，方便发布法务资讯、寺院新闻等内容。
+网站包含完整的博客功能，方便发布庙务资讯、神庙新闻等内容。
 
 #### 发布新文章 | Publishing New Posts
 1. **准备内容**：参考 `BLOG_GUIDE.md` 了解详细步骤
@@ -142,10 +142,10 @@ This website uses static HTML hosted on GitHub Pages for easy maintenance.
    - 或提供文本内容给管理员
 3. **更新索引**：在 `posts/posts.json` 中添加文章信息
 4. **分类选择**：
-   - 法会开示
-   - 寺院新闻
+   - 庙务开示
+   - 神庙新闻
    - 活动通知
-   - 佛学知识
+   - 文化知识
 
 #### 文章管理 | Content Management
 - 所有文章存放在 `/posts/` 目录
@@ -161,7 +161,7 @@ For technical assistance, please contact the temple management committee.
 
 ## 📚 相关资源 | Resources
 
-- [佛教经典 Buddhist Sutras](http://www.buddhanet.net)
+- [经典文献 Classical Texts](http://www.buddhanet.net)
 - [观音菩萨介绍 About Guanyin](https://en.wikipedia.org/wiki/Guanyin)
 - [怡保旅游资讯 Ipoh Tourism](https://www.ipoh.me)
 
@@ -177,24 +177,24 @@ For technical assistance, please contact the temple management committee.
 ## 🙏 回向偈 | Dedication of Merit
 
 ```
-愿以此功德，庄严佛净土。
-上报四重恩，下济三途苦。
-若有见闻者，悉发菩提心。
-尽此一报身，同生极乐国。
+愿以此功德，利益众生。
+上报四重恩，下济诸苦难。
+若有见闻者，悉发善心愿。
+尽此一报身，同得大圆满。
 
-May the merit of this work adorn the Buddha's Pure Land,
+May the merit of this work benefit all beings,
 Repaying the four kinds of kindness above,
-And relieving the suffering of those in the three paths below.
-May all who see and hear of this awaken to the Bodhi Mind,
-And at the end of this life, be born together in the Land of Ultimate Bliss.
+And relieving all sufferings below.
+May all who see and hear of this awaken to goodness,
+And at the end of this life, attain perfect peace.
 ```
 
 ---
 
 <div align="center">
   
-**南无大慈大悲观世音菩萨**  
-**Namo Great Compassionate Guanyin Bodhisattva**
+**南无大慈大悲观世音大士**  
+**Namo Great Compassionate Guanyin**
 
 🙏 🪷 🙏
 
