@@ -747,29 +747,26 @@
             flex-shrink: 0;
         }
 
-        .announcement-scroll {
-            display: inline-flex;
-            align-items: center; /* Center content vertically */
-            animation: scroll-left 40s linear infinite;
-            padding-left: 100%;
-            height: 40px;
+        .announcement-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
             white-space: nowrap;
-            padding-right: 100%; /* Add padding at the end too */
+            padding-left: 100%;
         }
 
-        .announcement-scroll:hover {
+        .announcement-content:hover {
             animation-play-state: paused;
         }
 
         .announcement-item {
             white-space: nowrap;
-            padding: 0 var(--space-xl);
+            padding: 0 30px;
             font-size: 0.9rem;
             color: var(--temple-cream);
             text-decoration: none;
             transition: color 0.3s ease;
+            line-height: 40px;
             display: inline-block;
-            line-height: 40px; /* Match bar height for perfect vertical centering */
         }
 
         .announcement-item:hover {
@@ -778,19 +775,20 @@
 
         .announcement-separator {
             color: var(--temple-gold);
-            padding: 0 var(--space-md);
-            display: inline-block;
+            padding: 0 15px;
             line-height: 40px;
+            display: inline-block;
         }
 
-        @keyframes scroll-left {
+        @keyframes scroll {
             0% {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(calc(-100% - 100vw));
             }
         }
+        
 
         /* Remove nav and hero adjustments since announcement is now below nav */
 
@@ -850,8 +848,8 @@
     <div class="announcement-bar" id="announcementBar">
         <div class="announcement-label">最新资讯</div>
         <div style="flex: 1; overflow: hidden; position: relative; height: 40px;">
-            <div class="announcement-scroll" id="announcementScroll">
-                <div class="announcement-loading" style="line-height: 40px;">正在加载最新资讯...</div>
+            <div class="announcement-content" id="announcementContent">
+                <span style="line-height: 40px; padding-left: 20px;">正在加载最新资讯...</span>
             </div>
         </div>
     </div>
@@ -1143,46 +1141,47 @@
         
         // Global callback for JSONP
         window.announcementCallback = function(data) {
-            const scrollContainer = document.getElementById('announcementScroll');
+            const content = document.getElementById('announcementContent');
             
             try {
                 const posts = data.feed.entry || [];
                 
                 if (posts.length === 0) {
-                    scrollContainer.innerHTML = '<div class="announcement-item">暂无最新资讯</div>';
+                    content.innerHTML = '<span class="announcement-item">暂无最新资讯</span>';
                     return;
                 }
                 
                 // Create announcement items
                 let announcementHTML = '';
                 
-                // Add posts twice to create seamless loop
-                for (let loop = 0; loop < 2; loop++) {
-                    posts.slice(0, 5).forEach((entry, index) => {
-                        const title = entry.title.$t;
-                        let link = '#';
-                        
-                        if (entry.link) {
-                            const altLink = entry.link.find(l => l.rel === 'alternate');
-                            if (altLink) {
-                                const bloggerUrl = altLink.href;
-                                link = `blog-post.html?url=${encodeURIComponent(bloggerUrl)}`;
-                            }
+                posts.slice(0, 5).forEach((entry, index) => {
+                    const title = entry.title.$t;
+                    let link = '#';
+                    
+                    if (entry.link) {
+                        const altLink = entry.link.find(l => l.rel === 'alternate');
+                        if (altLink) {
+                            const bloggerUrl = altLink.href;
+                            link = `blog-post.html?url=${encodeURIComponent(bloggerUrl)}`;
                         }
-                        
-                        if (index > 0 || loop > 0) {
-                            announcementHTML += '<span class="announcement-separator">•</span>';
-                        }
-                        
-                        announcementHTML += `<a href="${link}" class="announcement-item">${title}</a>`;
-                    });
-                }
+                    }
+                    
+                    if (index > 0) {
+                        announcementHTML += '<span class="announcement-separator">•</span>';
+                    }
+                    
+                    announcementHTML += `<a href="${link}" class="announcement-item">${title}</a>`;
+                });
                 
-                scrollContainer.innerHTML = announcementHTML;
+                // Add some padding at the end for better spacing
+                announcementHTML += '<span style="padding-right: 100px;"></span>';
+                
+                // Set content
+                content.innerHTML = announcementHTML;
                 
             } catch (error) {
                 console.error('Error loading announcements:', error);
-                scrollContainer.innerHTML = '<div class="announcement-item">无法加载最新资讯</div>';
+                content.innerHTML = '<span class="announcement-item">无法加载最新资讯</span>';
             }
         };
 
@@ -1200,8 +1199,8 @@
             
             // Handle script loading errors
             script.onerror = function() {
-                const scrollContainer = document.getElementById('announcementScroll');
-                scrollContainer.innerHTML = '<div class="announcement-item">无法连接到资讯源</div>';
+                const content = document.getElementById('announcementContent');
+                content.innerHTML = '<span class="announcement-item">无法连接到资讯源</span>';
             };
             
             document.body.appendChild(script);
