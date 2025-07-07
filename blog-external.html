@@ -467,18 +467,12 @@
                 day: 'numeric'
             });
             
-            // Extract post ID from entry
-            const postId = entry.id.$t.split('.post-')[1];
-            
-            // Create internal link to our post viewer
-            const link = `blog-post.html?id=${postId}`;
-            
-            // Also keep the original Blogger link as fallback
-            let bloggerLink = '#';
+            // Get the actual blog post URL
+            let link = '#';
             if (entry.link) {
                 const altLink = entry.link.find(l => l.rel === 'alternate');
                 if (altLink) {
-                    bloggerLink = altLink.href;
+                    link = `blog-post.html?url=${encodeURIComponent(altLink.href)}`;
                 }
             }
             

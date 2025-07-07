@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章加载中... - 打扪白衣观音庙</title>
+    <title>文章 - 打扪白衣观音庙</title>
     <meta name="description" content="打扪白衣观音庙庙务资讯">
     
     <!-- Favicon -->
@@ -134,118 +134,21 @@
             font-weight: 500;
         }
 
-        /* Article Container */
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 6rem var(--space-md) var(--space-lg);
-            min-height: calc(100vh - 200px);
-        }
-
-        /* Article Header */
-        .article-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            padding-bottom: var(--space-lg);
-            border-bottom: 1px solid rgba(139, 58, 58, 0.1);
-        }
-
-        .article-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--temple-burgundy);
-            margin-bottom: var(--space-md);
-            line-height: 1.3;
-        }
-
-        .article-meta {
+        /* Main Container */
+        .main-container {
+            padding-top: 60px;
+            min-height: calc(100vh - 150px);
             display: flex;
-            justify-content: center;
-            gap: var(--space-lg);
-            font-size: 1rem;
-            color: var(--text-secondary);
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Article Content */
-        .article-content {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-
-        .article-content h1,
-        .article-content h2,
-        .article-content h3,
-        .article-content h4,
-        .article-content h5,
-        .article-content h6 {
-            font-family: var(--font-heading);
-            color: var(--temple-burgundy);
-            margin: var(--space-lg) 0 var(--space-md) 0;
-            line-height: 1.3;
-        }
-
-        .article-content h2 {
-            font-size: 1.75rem;
-        }
-
-        .article-content h3 {
-            font-size: 1.5rem;
-        }
-
-        .article-content p {
-            margin-bottom: var(--space-md);
-        }
-
-        .article-content img {
-            max-width: 100%;
-            height: auto;
-            margin: var(--space-md) 0;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .article-content blockquote {
-            margin: var(--space-md) 0;
-            padding: var(--space-md);
-            background: var(--soft-gray);
-            border-left: 4px solid var(--temple-gold);
-            font-style: italic;
-        }
-
-        .article-content ul,
-        .article-content ol {
-            margin-bottom: var(--space-md);
-            margin-left: var(--space-lg);
-        }
-
-        .article-content li {
-            margin-bottom: var(--space-xs);
-        }
-
-        .article-content a {
-            color: var(--temple-burgundy);
-            text-decoration: underline;
-        }
-
-        .article-content a:hover {
-            color: var(--deep-burgundy);
+            flex-direction: column;
         }
 
         /* Navigation Buttons */
         .post-navigation {
-            margin-top: var(--space-xl);
-            padding-top: var(--space-lg);
-            border-top: 1px solid rgba(139, 58, 58, 0.1);
+            background: var(--white);
+            padding: var(--space-md);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             gap: var(--space-md);
             flex-wrap: wrap;
         }
@@ -265,6 +168,20 @@
             transform: translateY(-2px);
         }
 
+        /* Post Container */
+        .post-container {
+            flex: 1;
+            width: 100%;
+            background: var(--white);
+        }
+
+        .post-iframe {
+            width: 100%;
+            height: calc(100vh - 180px);
+            border: none;
+            background: white;
+        }
+
         /* Loading State */
         .loading {
             text-align: center;
@@ -278,9 +195,10 @@
             background: #fee;
             color: #c33;
             padding: var(--space-lg);
-            border-radius: 12px;
             text-align: center;
-            margin: var(--space-md) 0;
+            margin: var(--space-md) auto;
+            max-width: 600px;
+            border-radius: 12px;
         }
 
         /* Footer */
@@ -289,7 +207,6 @@
             color: var(--temple-cream);
             padding: var(--space-lg) var(--space-md);
             text-align: center;
-            margin-top: var(--space-xl);
         }
 
         /* Mobile Menu Toggle */
@@ -332,22 +249,17 @@
                 display: block;
             }
 
-            .article-container {
-                padding-top: 5rem;
-            }
-
-            .article-meta {
-                flex-direction: column;
-                gap: var(--space-xs);
-            }
-
             .post-navigation {
-                flex-direction: column;
+                padding: var(--space-sm);
             }
 
             .nav-btn {
-                width: 100%;
-                text-align: center;
+                font-size: 0.875rem;
+                padding: var(--space-xs) var(--space-sm);
+            }
+
+            .post-iframe {
+                height: calc(100vh - 160px);
             }
         }
     </style>
@@ -379,9 +291,16 @@
         </div>
     </nav>
 
-    <!-- Article Container -->
-    <div class="article-container">
-        <div id="articleContent">
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation Buttons -->
+        <nav class="post-navigation">
+            <a href="blog-external.html" class="nav-btn">← 返回文章列表</a>
+            <a href="#" id="viewInBlogger" class="nav-btn" target="_blank">在 Blogger 查看 →</a>
+        </nav>
+
+        <!-- Post Container -->
+        <div class="post-container" id="postContainer">
             <div class="loading">正在加载文章...</div>
         </div>
     </div>
@@ -393,135 +312,71 @@
     </footer>
 
     <script>
-        // Your Blogger subdomain
-        const BLOGGER_SUBDOMAIN = 'tbky';
-        
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
 
-        // Get post ID from URL
-        function getPostIdFromUrl() {
+        // Get post URL from query parameter
+        function getPostUrlFromParams() {
             const params = new URLSearchParams(window.location.search);
-            return params.get('id');
+            const url = params.get('url');
+            return url ? decodeURIComponent(url) : null;
         }
 
-        // Load single post callback
-        window.postCallback = function(data) {
-            const container = document.getElementById('articleContent');
+        // Load post in iframe
+        function loadPost() {
+            const postUrl = getPostUrlFromParams();
+            const container = document.getElementById('postContainer');
+            const bloggerLink = document.getElementById('viewInBlogger');
             
-            try {
-                const entry = data.entry;
-                
-                if (!entry) {
-                    showError('文章未找到');
-                    return;
-                }
-
-                // Update page title
-                document.title = `${entry.title.$t} - 打扪白衣观音庙`;
-                
-                // Parse date
-                const date = new Date(entry.published.$t).toLocaleDateString('zh-CN', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-
-                // Extract author
-                const author = entry.author && entry.author[0] ? entry.author[0].name.$t : '打扪白衣观音庙';
-
-                // Get content
-                const content = entry.content ? entry.content.$t : entry.summary.$t;
-
-                // Create article HTML
+            if (!postUrl) {
                 container.innerHTML = `
-                    <article>
-                        <header class="article-header">
-                            <h1 class="article-title">${entry.title.$t}</h1>
-                            <div class="article-meta">
-                                <div class="meta-item">
-                                    <span>📅</span>
-                                    <span>${date}</span>
-                                </div>
-                                <div class="meta-item">
-                                    <span>✍️</span>
-                                    <span>${author}</span>
-                                </div>
-                            </div>
-                        </header>
-                        
-                        <div class="article-content">
-                            ${content}
-                        </div>
-                        
-                        <nav class="post-navigation">
-                            <a href="blog-external.html" class="nav-btn">← 返回文章列表</a>
-                            <a href="${entry.link[0].href}" target="_blank" class="nav-btn">在 Blogger 查看 →</a>
-                        </nav>
-                    </article>
+                    <div class="error-message">
+                        <h3>错误</h3>
+                        <p>未指定文章</p>
+                        <p style="margin-top: 1rem;">
+                            <a href="blog-external.html" class="nav-btn">返回文章列表</a>
+                        </p>
+                    </div>
                 `;
-
-                // Process images to ensure they're responsive
-                const images = container.querySelectorAll('img');
-                images.forEach(img => {
-                    img.style.maxWidth = '100%';
-                    img.style.height = 'auto';
-                });
-
-            } catch (error) {
-                console.error('Error processing post:', error);
-                showError('处理文章时出错');
-            }
-        };
-
-        // Load post by ID
-        function loadPost(postId) {
-            const container = document.getElementById('articleContent');
-            
-            if (!postId) {
-                showError('未指定文章');
                 return;
             }
 
-            // Remove any existing script tags
-            const oldScript = document.getElementById('post-jsonp');
-            if (oldScript) {
-                oldScript.remove();
-            }
+            // Update the "View in Blogger" link
+            bloggerLink.href = postUrl;
+
+            // Create iframe with mobile view URL for better formatting
+            // Adding ?m=1 forces mobile view which is cleaner
+            const mobileUrl = postUrl.includes('?') ? postUrl + '&m=1' : postUrl + '?m=1';
             
-            // Create JSONP script tag for single post
-            const script = document.createElement('script');
-            script.id = 'post-jsonp';
-            script.src = `https://${BLOGGER_SUBDOMAIN}.blogspot.com/feeds/posts/default/${postId}?alt=json-in-script&callback=postCallback`;
-            
-            // Handle script loading errors
-            script.onerror = function() {
-                showError('无法加载文章');
-            };
-            
-            document.body.appendChild(script);
+            container.innerHTML = `
+                <iframe 
+                    src="${mobileUrl}" 
+                    class="post-iframe"
+                    id="postFrame"
+                    onload="adjustIframe()"
+                    title="Blog Post">
+                </iframe>
+            `;
         }
 
-        // Show error message
-        function showError(message) {
-            const container = document.getElementById('articleContent');
-            container.innerHTML = `
-                <div class="error-message">
-                    <h3>错误</h3>
-                    <p>${message}</p>
-                    <p style="margin-top: 1rem;">
-                        <a href="blog-external.html" class="nav-btn">返回文章列表</a>
-                    </p>
-                </div>
-            `;
+        // Adjust iframe styling after load
+        function adjustIframe() {
+            const iframe = document.getElementById('postFrame');
+            try {
+                // Note: This might not work due to cross-origin restrictions
+                // But we're using mobile view which should look decent by default
+                iframe.style.background = 'white';
+            } catch (e) {
+                // Cross-origin restriction, that's okay
+                console.log('Cross-origin iframe, cannot modify styles');
+            }
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            const postId = getPostIdFromUrl();
-            loadPost(postId);
+            loadPost();
         });
     </script>
 </body>
