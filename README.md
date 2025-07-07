@@ -133,25 +133,22 @@ This website uses static HTML hosted on GitHub Pages for easy maintenance.
 
 ### 📝 博客系统 | Blog System
 
-网站包含完整的博客功能，方便发布庙务资讯、神庙新闻等内容。
+网站使用 Google Blogger 作为内容管理系统，志愿者可以轻松发布新闻和资讯。
 
 #### 发布新文章 | Publishing New Posts
-1. **准备内容**：参考 `BLOG_GUIDE.md` 了解详细步骤
-2. **创建文章**：
-   - 复制 `post-template.html` 作为模板
-   - 或提供文本内容给管理员
-3. **更新索引**：在 `posts/posts.json` 中添加文章信息
-4. **分类选择**：
-   - 庙务开示
-   - 神庙新闻
-   - 活动通知
-   - 文化知识
+1. 登录 [tbky.blogspot.com](https://tbky.blogspot.com)
+2. 点击"新文章"
+3. 撰写内容
+4. 点击"发布"
+5. 文章会自动显示在网站上
 
-#### 文章管理 | Content Management
-- 所有文章存放在 `/posts/` 目录
-- 使用 `posts.json` 管理文章列表
-- 支持分类筛选和时间排序
-- 适配移动设备浏览
+#### 特点 | Features
+- 无需技术知识
+- 支持手机发布
+- 自动同步到网站
+- 永久免费
+- 支持图片和视频
+- 内置评论系统
 
 ### 技术支持 | Technical Support
 如需技术协助，请联系寺庙管理委员会。
