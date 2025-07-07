@@ -359,7 +359,7 @@
             <ol style="line-height: 1.8;">
                 <li>创建 Blogger 账号 / Create a Blogger account at <a href="https://www.blogger.com" target="_blank" style="color: var(--temple-burgundy);">blogger.com</a></li>
                 <li>选择博客地址 / Choose blog address: <strong>tbky.blogspot.com</strong></li>
-                <li>编辑此文件 / Edit this file: 将第 376 行的 'tbky' 改为您的实际博客名称</li>
+                <li>在 Blogger 设置中启用 RSS 订阅 / Enable RSS feeds in Blogger settings</li>
                 <li>发布第一篇文章 / Publish your first post</li>
             </ol>
         </div>
@@ -372,28 +372,20 @@
     </footer>
 
     <script>
-        // IMPORTANT: Change this to your Blogger subdomain after setup
-        const BLOGGER_SUBDOMAIN = 'tbky'; // <-- CHANGE THIS to your actual blogger subdomain
+        // IMPORTANT: Your Blogger subdomain
+        const BLOGGER_SUBDOMAIN = 'tbky';
         
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
 
-        async function loadBloggerPosts() {
+        // Global callback for JSONP
+        window.bloggerCallback = function(data) {
             const container = document.getElementById('blogContainer');
             const setupDiv = document.getElementById('setupInstructions');
             
             try {
-                const response = await fetch(
-                    `https://${BLOGGER_SUBDOMAIN}.blogspot.com/feeds/posts/default?alt=json&max-results=20`
-                );
-                
-                if (!response.ok) {
-                    throw new Error('Blog not found');
-                }
-                
-                const data = await response.json();
                 const posts = data.feed.entry || [];
                 
                 if (posts.length === 0) {
@@ -411,18 +403,47 @@
                 });
                 
             } catch (error) {
-                console.error('Error loading posts:', error);
-                container.innerHTML = `
-                    <div class="error-message" style="grid-column: 1/-1;">
-                        <h3 style="margin-bottom: 1rem;">无法加载文章 / Cannot Load Posts</h3>
-                        <p>请检查 Blogger 设置或联系管理员。</p>
-                        <p style="font-size: 0.875rem; margin-top: 1rem; color: #666;">
-                            Error: ${error.message}
-                        </p>
-                    </div>
-                `;
-                setupDiv.style.display = 'block';
+                console.error('Error processing posts:', error);
+                showError(error.message);
             }
+        };
+
+        function loadBloggerPosts() {
+            const container = document.getElementById('blogContainer');
+            
+            // Remove any existing script tags
+            const oldScript = document.getElementById('blogger-jsonp');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            
+            // Create JSONP script tag
+            const script = document.createElement('script');
+            script.id = 'blogger-jsonp';
+            script.src = `https://${BLOGGER_SUBDOMAIN}.blogspot.com/feeds/posts/default?alt=json-in-script&callback=bloggerCallback&max-results=20`;
+            
+            // Handle script loading errors
+            script.onerror = function() {
+                showError('无法连接到 Blogger。请检查博客地址是否正确。');
+            };
+            
+            document.body.appendChild(script);
+        }
+        
+        function showError(message) {
+            const container = document.getElementById('blogContainer');
+            const setupDiv = document.getElementById('setupInstructions');
+            
+            container.innerHTML = `
+                <div class="error-message" style="grid-column: 1/-1;">
+                    <h3 style="margin-bottom: 1rem;">无法加载文章 / Cannot Load Posts</h3>
+                    <p>${message}</p>
+                    <p style="font-size: 0.875rem; margin-top: 1rem; color: #666;">
+                        请确保 Blogger 设置正确，并且博客地址为：${BLOGGER_SUBDOMAIN}.blogspot.com
+                    </p>
+                </div>
+            `;
+            setupDiv.style.display = 'block';
         }
         
         function createPostCard(entry) {
@@ -435,13 +456,29 @@
                 month: 'long',
                 day: 'numeric'
             });
-            const link = entry.link.find(l => l.rel === 'alternate').href;
+            
+            // Find the correct link
+            let link = '#';
+            if (entry.link) {
+                const altLink = entry.link.find(l => l.rel === 'alternate');
+                if (altLink) {
+                    link = altLink.href;
+                }
+            }
             
             // Extract text content and clean it
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = entry.content.$t;
-            const textContent = tempDiv.textContent || tempDiv.innerText || '';
-            const excerpt = textContent.substring(0, 150).trim() + '...';
+            let excerpt = '点击阅读全文...';
+            if (entry.content && entry.content.$t) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = entry.content.$t;
+                const textContent = tempDiv.textContent || tempDiv.innerText || '';
+                excerpt = textContent.substring(0, 150).trim();
+                if (textContent.length > 150) {
+                    excerpt += '...';
+                }
+            } else if (entry.summary && entry.summary.$t) {
+                excerpt = entry.summary.$t.substring(0, 150).trim() + '...';
+            }
             
             card.innerHTML = `
                 <div class="blog-header">
