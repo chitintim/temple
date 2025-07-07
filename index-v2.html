@@ -709,7 +709,7 @@
         /* Announcement Bar */
         .announcement-bar {
             position: fixed;
-            top: 65px; /* Below the nav bar with small gap */
+            top: 60px; /* Directly below the nav bar */
             left: 0;
             right: 0;
             background: var(--temple-burgundy);
@@ -723,10 +723,12 @@
             align-items: stretch;
             transform: translateY(-100px); /* Hidden by default */
             transition: transform 0.3s ease;
+            opacity: 0; /* Start with 0 opacity */
         }
 
         .announcement-bar.visible {
             transform: translateY(0);
+            opacity: 1; /* Fade in when visible */
         }
 
         .announcement-label {
@@ -796,7 +798,7 @@
         @media (max-width: 768px) {
             .announcement-bar {
                 height: 35px;
-                top: 80px; /* Further increased for better mobile clearance */
+                top: 64px; /* Adjusted to sit right below mobile nav */
                 z-index: 997; /* Ensure it's below mobile nav */
             }
             
@@ -1083,8 +1085,8 @@
             
             if (currentScroll > 100) {
                 navbar.classList.add('visible');
-                // Show announcement bar slightly after nav bar
-                if (currentScroll > 200) {
+                // Show announcement bar at the same time as nav, but only if scrolled enough
+                if (currentScroll > 150) {
                     announcementBar.classList.add('visible');
                 }
             } else {
