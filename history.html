@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观音庙历史 - 双威打扪白衣观音庙 Sunway Tambun Kwanyin Temple</title>
+    <meta name="description" content="了解双威打扪白衣观音庙的历史沿革与发展">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/temple-logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/temple-logo.ico">
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Chinese fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Copy root variables from index.html */
+        :root {
+            --temple-burgundy: #8B3A3A;
+            --temple-gold: #D4AF37;
+            --temple-cream: #FFF8E7;
+            --deep-burgundy: #6B2C2C;
+            --light-gold: #E6C757;
+            --soft-gray: #F5F5F0;
+            --text-primary: #3A3A3A;
+            --text-secondary: #666666;
+            --white: #FFFFFF;
+            
+            --font-brush: 'Ma Shan Zheng', cursive;
+            --font-heading: 'Noto Serif SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', serif;
+            --font-body: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 3rem;
+            --space-xl: 5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--temple-cream);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation - matching index.html style */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: var(--space-sm);
+        }
+
+        .nav-logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--temple-burgundy);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--space-lg);
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--temple-burgundy);
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 8rem var(--space-md) var(--space-xl);
+            background: linear-gradient(to bottom, var(--white), var(--temple-cream));
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--temple-burgundy);
+            margin-bottom: var(--space-sm);
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--temple-gold);
+        }
+
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-top: var(--space-md);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--space-md) var(--space-xl);
+        }
+
+        /* Timeline Item */
+        .timeline-item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--temple-gold);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--temple-burgundy);
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--temple-burgundy);
+        }
+
+        .timeline-content p {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-content .english-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--temple-burgundy);
+            color: var(--temple-cream);
+            padding: var(--space-lg) var(--space-md);
+            margin-top: var(--space-xl);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-heading);
+            margin-bottom: var(--space-sm);
+            color: var(--light-gold);
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--temple-burgundy);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--temple-cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: var(--space-md);
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding-top: 6rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+
+            .timeline-year {
+                font-size: 1.5rem;
+            }
+
+            .timeline-title {
+                font-size: 1.25rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div style="font-family: var(--font-body); color: var(--temple-burgundy);">加载中...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/temple-logo.png" alt="Logo">
+                <span class="nav-logo-text">双威打扪白衣观音庙</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="history.html" class="nav-link active">观音庙历史</a></li>
+                <li><a href="index.html#services" class="nav-link">祈福服务</a></li>
+                <li><a href="index.html#events" class="nav-link">活动日程</a></li>
+                <li><a href="index.html#gallery" class="nav-link">相册</a></li>
+                <li><a href="blog-external.html" class="nav-link">庙务资讯</a></li>
+                <li><a href="index.html#contact" class="nav-link">联系方式</a></li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">观音庙历史</h1>
+        <p class="page-subtitle">双威打扪白衣观音庙创建于1975年，由池佛莲主持创立，坐落于怡保打扪地区。四十余年来，本庙秉承观音大士慈悲为怀的精神，为信众指点迷津、祈福消灾、济世利人。</p>
+    </div>
+        
+    <!-- Timeline -->
+    <div class="timeline-container">
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">1975</span>
+                <h3 class="timeline-title">创庙伊始</h3>
+            </div>
+            <div class="timeline-content">
+                <p>池佛莲主持在打扪地区创立白衣观音庙，开始为当地信众提供祈福服务。</p>
+                <p class="english-text">Temple founded by Master Chi Fo Lian in Tambun area, beginning to serve local devotees.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">1980</span>
+                <h3 class="timeline-title">稳步发展</h3>
+            </div>
+            <div class="timeline-content">
+                <p>香火日渐兴旺，信众增多，庙宇活动逐渐丰富。</p>
+                <p class="english-text">Temple activities expanded as the number of devotees grew steadily.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">1990</span>
+                <h3 class="timeline-title">扩建改造</h3>
+            </div>
+            <div class="timeline-content">
+                <p>进行第一次大规模扩建，增加更多祈福设施。</p>
+                <p class="english-text">First major expansion undertaken to add more prayer facilities.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">2007</span>
+                <h3 class="timeline-title">获批永久地</h3>
+            </div>
+            <div class="timeline-content">
+                <p>获得州政府批准永久保留地，为庙宇长远发展奠定基础。</p>
+                <p class="english-text">Received permanent land status from state government, securing temple's future.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">2015</span>
+                <h3 class="timeline-title">四十周年庆</h3>
+            </div>
+            <div class="timeline-content">
+                <p>隆重举办四十周年庆典，回顾发展历程，展望未来。</p>
+                <p class="english-text">Celebrated 40th anniversary with grand ceremonies, reflecting on past achievements.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">2020</span>
+                <h3 class="timeline-title">新庙建设</h3>
+            </div>
+            <div class="timeline-content">
+                <p>启动新庙宇建设计划，为信众提供更加庄严清净的祈福场所。</p>
+                <p class="english-text">Initiated new temple construction project to provide better facilities for devotees.</p>
+            </div>
+        </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-year">2025</span>
+                <h3 class="timeline-title">五十周年</h3>
+            </div>
+            <div class="timeline-content">
+                <p>即将迎来五十周年华诞，继续弘扬观音精神，服务更多信众。</p>
+                <p class="english-text">Approaching 50th anniversary, continuing to spread Guan Yin's compassion to more devotees.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>双威打扪白衣观音庙</h3>
+                <p>Sunway Tambun Kwanyin Temple</p>
+                <p>慈悲为怀 · 普度众生</p>
+            </div>
+            <div class="footer-section">
+                <h3>联系方式</h3>
+                <p>地址：Lot 12345, Jalan Tambun, 31400 Ipoh, Perak</p>
+                <p>电话：05-123 4567</p>
+                <p>电邮：info@tambunkuanyintemple.org</p>
+            </div>
+            <div class="footer-section">
+                <h3>开放时间</h3>
+                <p>每日 Daily: 8:00 AM - 6:00 PM</p>
+                <p>初一十五 1st & 15th: 7:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 双威打扪白衣观音庙 Sunway Tambun Kwanyin Temple. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hide loading screen after page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('fade-out');
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 300);
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
