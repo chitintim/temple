@@ -17,123 +17,11 @@
     <!-- Chinese fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="css/common.css">
+    
+    <!-- Page Specific Styles -->
     <style>
-        /* Copy root variables from index.html */
-        :root {
-            --temple-burgundy: #8B3A3A;
-            --temple-gold: #D4AF37;
-            --temple-cream: #FFF8E7;
-            --deep-burgundy: #6B2C2C;
-            --light-gold: #E6C757;
-            --soft-gray: #F5F5F0;
-            --text-primary: #3A3A3A;
-            --text-secondary: #666666;
-            --white: #FFFFFF;
-            
-            --font-brush: 'Ma Shan Zheng', cursive;
-            --font-heading: 'Noto Serif SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', serif;
-            --font-body: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 3rem;
-            --space-xl: 5rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--text-primary);
-            background-color: var(--temple-cream);
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navigation - matching other pages */
-        .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--space-sm) var(--space-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: var(--space-sm);
-        }
-
-        .nav-logo-text {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            color: var(--temple-burgundy);
-            font-weight: 600;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: var(--space-lg);
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 400;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--temple-gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--temple-burgundy);
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1);
-        }
-        
-        .nav-link.active {
-            color: var(--temple-burgundy);
-            font-weight: 500;
-        }
-
         /* Article Container */
         .article-container {
             max-width: 800px;
@@ -319,55 +207,12 @@
             margin: var(--space-md) 0;
         }
 
-        /* Footer */
-        footer {
-            background: var(--temple-burgundy);
-            color: var(--temple-cream);
-            padding: var(--space-lg) var(--space-md);
-            text-align: center;
-            margin-top: var(--space-xl);
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--space-xs);
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--temple-burgundy);
-            margin: 5px 0;
-            transition: all 0.3s ease;
+        .error-message h3 {
+            margin-bottom: 1rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: var(--space-md);
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
             .article-container {
                 padding-top: 5rem;
             }
@@ -389,31 +234,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="images/temple-logo.png" alt="Logo">
-                <span class="nav-logo-text">双威打扪白衣观音庙</span>
-            </a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="history.html" class="nav-link">观音庙历史</a></li>
-                <li><a href="index.html#services" class="nav-link">祈福服务</a></li>
-                <li><a href="index.html#events" class="nav-link">活动日程</a></li>
-                <li><a href="index.html#gallery" class="nav-link">相册</a></li>
-                <li><a href="blog-external.html" class="nav-link active">庙务资讯</a></li>
-                <li><a href="index.html#contact" class="nav-link">联系方式</a></li>
-            </ul>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Navigation and Loading Screen will be inserted by components.js -->
 
     <!-- Article Container -->
     <div class="article-container">
@@ -422,21 +243,17 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 双威打扪白衣观音庙 版权所有</p>
-        <p style="font-size: 0.875rem; opacity: 0.8;">© 2025 Sunway Tambun Kwanyin Temple. All rights reserved.</p>
-    </footer>
+    <!-- Footer will be inserted by components.js -->
 
+    <!-- Load Component Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- Page Specific Script -->
     <script>
         // Your Blogger subdomain
         const BLOGGER_SUBDOMAIN = 'tbky';
         
-        // Mobile menu toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
         // Get post URL from query parameter
         function getPostUrlFromParams() {
             const params = new URLSearchParams(window.location.search);
