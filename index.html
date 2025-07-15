@@ -610,9 +610,36 @@
         <h2 class="section-title">相册</h2>
         <p class="text-center mb-md">寺庙建设进展及活动照片</p>
         <p class="text-center english-text mb-md">Temple construction progress and activities</p>
-        <!-- Google Photos album embed would go here -->
-        <div style="background: var(--white); padding: var(--space-xl); border-radius: 12px; text-align: center;">
-            <p>相册加载中...</p>
+        
+        <!-- Photo Highlights Grid -->
+        <style>
+            @media (max-width: 768px) {
+                #galleryHighlights {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+            @media (min-width: 769px) and (max-width: 1024px) {
+                #galleryHighlights {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+        </style>
+        <div id="galleryHighlights" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin: var(--space-lg) 0;">
+            <!-- Album highlights will be loaded here dynamically -->
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); font-size: 0.875rem;">
+                正在加载相册...
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--space-lg);">
+            <a href="album.html" class="btn btn-primary" style="display: inline-block; padding: 1rem 2rem; background: var(--temple-burgundy); color: var(--white); text-decoration: none; border-radius: 8px; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 44, 60, 0.3);"
+               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(139, 44, 60, 0.4)'"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(139, 44, 60, 0.3)'">
+                查看所有活动相册 →
+            </a>
+            <p style="margin-top: var(--space-md); color: var(--text-secondary);">
+                View All Event Albums
+            </p>
         </div>
     </section>
 
@@ -664,6 +691,7 @@
     <script src="js/components.js"></script>
     <script src="js/common.js"></script>
     <script src="js/announcement.js"></script>
+    <script src="js/album-data.js"></script>
     
     <!-- Page Specific Scripts -->
     <script>
@@ -682,6 +710,55 @@
                     // Close mobile menu if open
                     document.getElementById('navMenu').classList.remove('active');
                 }
+            }
+        });
+        
+        // Load gallery highlights from album data
+        document.addEventListener('DOMContentLoaded', function() {
+            const highlightsContainer = document.getElementById('galleryHighlights');
+            
+            // Get processed events from album-data.js
+            const events = getProcessedEvents();
+            
+            if (events.length === 0) {
+                highlightsContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: var(--space-lg);">
+                        <p style="color: var(--text-secondary);">暂无活动相册</p>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: var(--space-sm);">No event albums available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show up to 3 latest events
+            const highlightEvents = events.slice(0, 3);
+            
+            highlightsContainer.innerHTML = highlightEvents.map(event => `
+                <a href="album.html" style="text-decoration: none; color: inherit;">
+                    <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); aspect-ratio: 4/3; background: #f0f0f0; cursor: pointer; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'">
+                        <img src="${event.coverImage}" 
+                             alt="${event.name}" 
+                             style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
+                             onerror="this.src='images/temple-building.jpg'">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; padding: var(--space-sm);">
+                            <div style="font-size: 0.9rem; font-weight: 500; line-height: 1.3; margin-bottom: 0.2rem;">${event.name}</div>
+                            <div style="font-size: 0.75rem; opacity: 0.9;">
+                                ${event.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+            
+            // Add message if there are more albums
+            if (events.length > 3) {
+                highlightsContainer.innerHTML += `
+                    <div style="grid-column: 1/-1; text-align: center; margin-top: var(--space-xs); color: var(--text-secondary); font-size: 0.75rem; opacity: 0.8;">
+                        还有 ${events.length - 3} 个活动相册
+                    </div>
+                `;
             }
         });
     </script>

@@ -24,7 +24,7 @@ function createNavigation() {
                 <li><a href="history.html" class="nav-link" data-page="history">观音庙历史</a></li>
                 <li><a href="index.html#services" class="nav-link">祈福服务</a></li>
                 <li><a href="index.html#events" class="nav-link">活动日程</a></li>
-                <li><a href="index.html#gallery" class="nav-link">相册</a></li>
+                <li><a href="album.html" class="nav-link" data-page="album">相册</a></li>
                 <li><a href="blog-external.html" class="nav-link" data-page="blog">庙务资讯</a></li>
                 <li><a href="index.html#contact" class="nav-link">联系方式</a></li>
             </ul>
@@ -57,7 +57,8 @@ function createNavigation() {
     navLinks.forEach(link => {
         if (link.dataset.page === currentPage || 
             (currentPage === 'blog-external' && link.dataset.page === 'blog') ||
-            (currentPage === 'blog-post' && link.dataset.page === 'blog')) {
+            (currentPage === 'blog-post' && link.dataset.page === 'blog') ||
+            (currentPage === 'album' && link.dataset.page === 'album')) {
             link.classList.add('active');
         }
     });

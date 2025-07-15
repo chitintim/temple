@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动相册 - 双威打扪白衣观音庙 Sunway Tambun Kwanyin Temple</title>
+    <meta name="description" content="双威打扪白衣观音庙活动照片集锦">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/temple-logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/temple-logo.ico">
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Chinese fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="css/common.css">
+    
+    <!-- Page Specific Styles -->
+    <style>
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem var(--space-md) var(--space-md);
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--temple-burgundy);
+            margin-bottom: var(--space-sm);
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--temple-gold);
+        }
+
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-top: var(--space-md);
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .view-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--temple-burgundy);
+            background: var(--white);
+            color: var(--temple-burgundy);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: var(--temple-burgundy);
+            color: var(--white);
+        }
+
+        /* Events View */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+
+        .event-cover {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--temple-burgundy), var(--deep-burgundy));
+        }
+
+        .event-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover .event-cover img {
+            transform: scale(1.05);
+        }
+
+        .event-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: var(--space-lg) var(--space-md) var(--space-md);
+            color: var(--white);
+        }
+
+        .event-date {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-xs);
+        }
+
+        .event-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .event-info {
+            padding: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .event-count {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .event-arrow {
+            color: var(--temple-burgundy);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover .event-arrow {
+            transform: translateX(5px);
+        }
+
+
+
+        /* Loading & Error States */
+        .loading {
+            text-align: center;
+            padding: var(--space-xl);
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: var(--space-lg);
+            border-radius: 12px;
+            text-align: center;
+            margin: var(--space-md) auto;
+            max-width: 600px;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .event-card {
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .event-card:nth-child(1) { animation-delay: 0.1s; }
+        .event-card:nth-child(2) { animation-delay: 0.2s; }
+        .event-card:nth-child(3) { animation-delay: 0.3s; }
+        .event-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation and Loading Screen will be inserted by components.js -->
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">活动相册</h1>
+            <p class="page-subtitle">Temple Event Gallery</p>
+        </header>
+
+        <!-- Main Container for Dynamic Content -->
+        <div id="albumContent">
+            <!-- Events view or Gallery view will be inserted here -->
+            <div class="loading">正在加载相册...</div>
+        </div>
+    </div>
+
+
+    <!-- Footer will be inserted by components.js -->
+
+    <!-- Load Component Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/album-data.js"></script>
+    
+
+    <!-- Page Specific Script -->
+    <script>
+        // Configuration
+        let events = [];
+        
+        // Initialize
+        function initialize() {
+            // Get processed events from shared data file
+            events = getProcessedEvents();
+            showEventsView();
+        }
+        
+        // Show events view
+        function showEventsView() {
+            const content = document.getElementById('albumContent');
+            
+            if (events.length === 0) {
+                content.innerHTML = `
+                    <div style="text-align: center; padding: var(--space-xl);">
+                        <p style="color: var(--text-secondary); font-size: 1.125rem; margin-bottom: var(--space-lg);">暂无活动相册</p>
+                        <div style="background: #f9f9f9; padding: var(--space-lg); border-radius: 12px; max-width: 600px; margin: 0 auto; text-align: left;">
+                            <h3 style="color: var(--temple-burgundy); margin-bottom: var(--space-sm);">如何添加相册：</h3>
+                            <ol style="line-height: 1.8; color: var(--text-secondary);">
+                                <li>在 Google Photos 创建活动相册</li>
+                                <li>获取分享链接</li>
+                                <li>访问 <a href="https://www.publicalbum.org/blog/embedding-google-photos-albums" target="_blank" style="color: var(--temple-burgundy);">PublicAlbum.org</a> 生成嵌入代码</li>
+                                <li>将代码添加到网站源文件中</li>
+                            </ol>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            content.innerHTML = '<div class="events-container" id="eventsContainer"></div>';
+            const container = document.getElementById('eventsContainer');
+            
+            events.forEach(event => {
+                const card = createEventCard(event);
+                container.appendChild(card);
+            });
+        }
+        
+        // Create event card
+        function createEventCard(event) {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            
+            const dateStr = event.date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            card.innerHTML = `
+                <div class="event-cover">
+                    <img src="${event.coverImage}" alt="${event.name}">
+                    <div class="event-overlay">
+                        <div class="event-date">${dateStr}</div>
+                        <h2 class="event-title">${event.name}</h2>
+                    </div>
+                </div>
+                <div class="event-info">
+                    <span class="event-count">在 Google Photos 中查看</span>
+                    <span class="event-arrow">↗</span>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => {
+                if (event.googlePhotosLink) {
+                    window.open(event.googlePhotosLink, '_blank');
+                }
+            });
+            
+            return card;
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
